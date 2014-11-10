@@ -4,12 +4,15 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+This is a personal blog web site of Mao Fagui.
+
+Talk is cheap, show me the code.
 
 ### More Information
 
-A place to include any other types of information that you'd like to include about yourself. 
+Graduate, 2013
+School of software, SJTU
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[maofg92@163.com](mailto:maofg92@163.com)
