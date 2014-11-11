@@ -2,7 +2,7 @@
 layout: post
 title: Hello world!
 ---
-记住我的个人blog地址~
+记住我的个人blog地址~<br />
 <a href="http://haluomao.github.io">http://haluomao.github.io</a>
 
 一个了解github.io的链接：
