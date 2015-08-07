@@ -112,7 +112,17 @@ disqus:
 
 
 #################################### global configure #######################################
+gems:
+  - jemoji # Emoji please!
+  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
 
+# Exclude these files from your production _site
+exclude:
+    - Gemfile
+    - Gemfile.lock
+    - LICENSE
+    - README.md
+    
 username: haluomao
 baseurl: http://haluomao.github.io
 markdown: redcarpet
