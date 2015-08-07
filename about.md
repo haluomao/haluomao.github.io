@@ -4,13 +4,13 @@ title: About
 permalink: /about/
 ---
 
-This is a personal blog web site of Mao Fagui.
+What you see now is the Mao Fagui's personal blog web site.
 
 Talk is cheap, show me the code.
 
 ### More Information
 
-Graduate, 2013
+Under post-graduate, 2015
 School of software, SJTU
 
 ### Contact me

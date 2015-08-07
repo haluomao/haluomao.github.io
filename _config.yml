@@ -1,68 +1,127 @@
-#
-# This file contains configuration flags to customize your site
-#
 
-# Name of your site (displayed in the header)
-name: Mao Fagui
 
-# Short bio or description (displayed in the header)
-description: http://haluomao.github.io/
 
-# URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://avatars0.githubusercontent.com/u/1695304?v=3&s=460
+######################### theme kunka condigure ##############################################
+# Where things are
+source:       .
+destination:  ./_site
+plugins:      ./_plugins
+layouts:      ./_layouts
+paginate:     10
 
-#
-# Flags below are optional
-#
+# Handling Reading
+safe:         false
+include:      [".htaccess"]
+exclude:      []
+keep_files:   [".git", ".svn"]
+encoding:     "utf-8"
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+textile_ext:  "textile"
 
-# Includes an icon in the footer for each username you enter
-footer-links:
-  dribbble: 
-  email: maofg92@163.com
-  github: haluomao
-  rss: # just type anything here for a working RSS icon, make sure you set the "url" below!
-  stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
+# Filtering Content
+show_drafts:  null
+limit_posts:  0
+future:       true
+unpublished:  false
 
-# Your disqus shortname, entering this will enable commenting on posts
-disqus: 
+# Conversion
+markdown:     kramdown
+highlighter:  pygments
+lsi:          false
+excerpt_separator: "\n\n"
 
-# Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics: 
+# Serving
+detach:       false
+port:         4000
+host:         127.0.0.1
+baseurl:      "" # does not include hostname
 
-# Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
-# Used for Sitemap.xml and your RSS feed
+# Outputting
+permalink:     date
+paginate_path: /page:num
+timezone:      null
+
+
+#Site config
+title: MFG's Blog
+description: Just another Jekyll theme design and code by zhanxin.info.
+keywords: MFG's Blog
 url: http://haluomao.github.io
+feed: /atom.xml
+favicon: https://avatars0.githubusercontent.com/u/1695304?v=3&s=460
 
-# If you're hosting your site at a Project repository on GitHub pages 
-# (http://yourusername.github.io/repository-name)
-# and NOT your User repository (http://yourusername.github.io)
-# then add in the baseurl here, like this: "/repository-name"
-baseurl: ""
+#Nav config
+nav:
+  - text: Home
+    url: index.html
+  - text: Categories 
+    url: navigations/categories.html
+  - text: Archives
+    url: navigations/archives.html
+  - text: Contact
+    url: navigations/contact.html
+  - text: Links
+    url: navigations/links.html
 
-#
-# !! You don't need to change any of the configuration flags below !!
-#
+#Author config
+author:
+    name: mfg
+    email: maofg92@163.com
+    imgRel: true
+    imageLink: images/avatar.png
+    simpleIntro: I am Mao Fagui. <br /> Good Good Coding, Day Day Up!
+    detailIntro:
+      <p>It is the personal blog of Mao Fagui. </p>
+      <p>Something interesting, awesome, important, or remarkable will be recorded as blogs here.</p>
+      <p>I've been looking for people who share common interests with me. I am very grad to make friends with you.</p>
 
-markdown: kramdown
+#Follow me, you can choose your icon by http://fortawesome.github.io/Font-Awesome/icons/#brand
+follow:
+  - class: icon-rss
+    url: https://github.com/haluomao.atom
+  - class: icon-weibo
+    url: http://weibo.com/maofg
+  - class: icon-github-alt
+    url: https://github.com/haluomao
+#  - class: icon-renren
+#    url: http://renren.com
+#  - class: icon-github-alt
+#    url: http://github.com
+#  - class: icon-twitter
+#    url: http://twitter.com
+# - class: icon-google-plus
+#    url: http://google.com
+
+#Links
+customLinks:
+  - item:
+    - text: StrayBirds Blog Templates
+      url: https://github.com/minixalpha/StrayBirds
+    message: Blog Templates
+  - item:
+    - text: Font Awesome
+      url: http://fortawesome.github.io/Font-Awesome/
+    - text: jQuery
+      url: http://jquery.com/
+    message: Other Links
+
+#comment config
+disqus:
+  config: true
+  id: haluomao
+
+
+#################################### global configure #######################################
+
+username: haluomao
+baseurl: http://haluomao.github.io
+markdown: redcarpet
+safe: false
 highlighter: pygments
-permalink: /:title/
+title: MFG's Blog
+description: Good Good Coding, Day Day Up!
+theme: kunka
+disqusname: Blogs
 
-# The release of Jekyll Now that you're using
-version: v1.0.0
-
-# Set the Sass partials directory, as we're using @imports
-sass:
-  sass_dir: _scss
-  style: :expanded # You might prefer to minify using :compressed
-
-# Use the following plug-ins
-gems:
-  - jemoji # Emoji please!
-  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
-
-# Exclude these files from your production _site
-exclude:
-    - Gemfile
-    - Gemfile.lock
-    - LICENSE
-    - README.md
+# theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
+# those themes are all come from GitHub Pages Themes
