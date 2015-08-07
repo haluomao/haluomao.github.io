@@ -62,6 +62,8 @@ nav:
     url: navigations/contact.html
   - text: Links
     url: navigations/links.html
+  - text: Online CV
+    url: Resume/index.html
 
 #Author config
 author:
