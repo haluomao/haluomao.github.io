@@ -46,7 +46,7 @@ timezone:      null
 title: MFG's Blog
 description: Just another Jekyll theme design and code by zhanxin.info.
 keywords: MFG's Blog
-url: http://haluomao.github.io
+url: 
 feed: /atom.xml
 favicon: https://avatars0.githubusercontent.com/u/1695304?v=3&s=460
 
@@ -114,7 +114,7 @@ disqus:
 #################################### global configure #######################################
 
 username: haluomao
-baseurl: http://haluomao.github.io
+baseurl: 
 markdown: redcarpet
 safe: false
 highlighter: pygments
