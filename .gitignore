@@ -8,3 +8,4 @@ Gemfile.lock
 node_modules
 package.json
 _zconfig.yml
+run.bat
