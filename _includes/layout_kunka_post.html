@@ -15,6 +15,7 @@
         <a class="next" href="{{site.baseurl}}/{{ page.next.url }}" rel="bookmark">{{ page.next.title | truncatewords:5 }}&nbsp;&raquo;</a>
         {% endif %}
     </nav>
+	{% if page.comments %}
     <div class="comment">
         {% if site.disqus.config %}
         <div id="disqus_thread"></div>
@@ -24,4 +25,5 @@
             {% endif %}
         {% endif %}
     </div>
+	{% endif %}
 </div>

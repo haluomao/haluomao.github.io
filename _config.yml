@@ -43,9 +43,9 @@ timezone:      null
 
 
 #Site config
-title: MFG's Blog
+title: Mao's Blog
 description: Just another Jekyll theme design and code by zhanxin.info.
-keywords: MFG's Blog
+keywords: Mao's Blog
 url: 
 feed: /atom.xml
 favicon: https://avatars0.githubusercontent.com/u/1695304?v=3&s=460
