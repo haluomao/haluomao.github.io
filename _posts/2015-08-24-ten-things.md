@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 给自己的十诫
-category: Tech
+title: 十诫
+category: Life
 comments: false
 ---
 1. 玩物会丧志
