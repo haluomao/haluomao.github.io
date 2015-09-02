@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Java中的集合类Collection，List, Set, Map; Array, Stack，Queue等。
-category: Tech
+category: Java
 comments: false
 --- 
 ## Java中的主要数据结构（整体图）
@@ -457,8 +457,9 @@ A: Vector和HashTable是线程同步的（synchronized）。性能上，ArrayLis
                 return orderA - orderB;
            }
         });
-4. stack和queue的相互实现
-
+4. stack和queue的相互实现  
+	stack实现queue:用两个stack实现，一个管入队（enqueue），一个管出队（dequeue)；如果出队为空，将enqueue中的值放到dequeue中。  
+	queue实现stack:两个queue，一个充当临时的队列，每次top或pop的时候，将存储的queue倒入到tmpqueue中，记录下最后一个，返回或删除，之后再倒回去。
 (TBC)
 ### 参考:  
 1. [Java集合的Stack、Queue、Map的遍历](http://lavasoft.blog.51cto.com/62575/181781/)  
