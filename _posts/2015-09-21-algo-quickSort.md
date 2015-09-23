@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Maximum Sub-Sequence
+title: 排序算法
 category: Algorithm
 comments: false
 ---
