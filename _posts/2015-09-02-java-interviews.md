@@ -255,3 +255,12 @@ Comparator决定的顺序。
    特殊的BlockingQueue，对其的操作必须是放和取交替完成的。
 
 LinkedBlockingQueue和ArrayBlockingQueue比较起来，它们背后所用的数据结构不一样，导致LinkedBlockingQueue的数据吞吐量要大于ArrayBlockingQueue，但在线程数量很大时其性能的可预见性低于ArrayBlockingQueue。
+
+##15. for循环可以不使用{}，但是仅限于执行语句（不包括变量声明语句！）
+
+	for (int i = 0; i < 10; i++){
+		int k=i;
+	}
+	//不加花括号，竟然会编译出错
+	for (int i = 0; i < 10; i++)
+		int k=i;
