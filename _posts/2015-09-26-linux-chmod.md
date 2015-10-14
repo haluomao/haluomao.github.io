@@ -4,7 +4,7 @@ title: Linux 也忘得差不多了
 category: linux
 comments: false
 ---
-### chmod命令
+### 1、 chmod命令
 参考:[每天一个linux命令（27）：linux chmod命令](http://www.cnblogs.com/peida/archive/2012/11/29/2794010.html)
 
 chmod命令用于改变linux系统文件或目录的访问权限。用它控制文件或目录的访问权限。该命令有两种用法。一种是包含字母和操作符表达式的文字设定法；另一种是包含数字的数字设定法。
@@ -58,3 +58,22 @@ chmod 444 file
 chmod a-wx,a+r   file  
 说明：
 同上例
+
+### 2、 Linux桌面环境（图形化操作界面）
+GNOME和KDE是目前的主流环境，而Xfce、LXDE、Openbox和Fluxbox等也已经得到了很高的应用。
+
+![](/images/201510/LinuxGUIlist.png "图形桌面环境使用")
+
+- KDE（Kool Desktop Environment）项目始建于1996年10月，相对于GNOME还要早一些。KDE项目是为满足普通用户也能够通过简单易用的桌面来管理Unix工作站上的各种应用软件以及完成各种任务。  
+KDE也拥有了可以与微软office媲美的办公应用套件KOffice，其分别由电子表格、幻灯片制作程序、组织者、新闻客户端等应用组成.
+
+- GNOME计划发起于1997年8月，所以，你可以在GNOME的LOGO上见到1997的字样。  
+![](/images/201510/gnome.jpg "GNOME的logo")  
+GNOME不仅仅提供了一个吸引人的桌面环境，而且还提供一个开发平台，一个能使开发的应用程序与桌面其它部分集成的可扩展框架。  
+如果，你体验过GNOME就会知道，GNOME的这些应用软件是如何让Linux系统更具可操作性，鼠标拖拽以及左右键功能、编辑文档、绘制图片、收发邮件、音频和视频的播放、即时通讯工具聊天......这些使用体验与你在Windows下几乎没有差别。
+- Xfce(XForms Common Environment)创建于2007年7月，类似于商业图形环境CDE，是一个运行在各类Unix下的轻量级桌面环境。  
+Xfce设计目的是用来提高系统的效率，在节省系统资源的同时，能够快速加载和执行应用程序。  
+XFce最主要的特色是容易配置，整个过程都可以使用鼠标来完成，而不需要修改配置文件的代码。最新版本的XFce还支持鼠标拖放、系统任务管理、多字节在内的多国语言以及其它特征。
+
+-  LXDE（Lightweight X11 Desktop Environment）创建于2006年，主要为Unix以及如Linux、BSD等POSIX相容平台上提供一个轻量、快速的桌面环境。  
+相对于GNOME和KDE这些桌面环境，LXDE属于小巧玲珑类型的。LXDE更加注重于实用性和轻巧性，并且尽力降低其所耗系统资源。不同于其它桌面环境，其元件相依性极少。取而代之的是各元件可以独立运作，大多数的元件都不须倚赖其它套件而可以独自执行。

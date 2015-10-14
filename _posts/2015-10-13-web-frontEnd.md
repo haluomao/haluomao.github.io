@@ -1,7 +1,7 @@
 ---
 layout: post
 title: web前端开发面试题
-category: cloud
+category: web
 comments: false
 ---
 ###1、 xhtml和html有什么区别？
