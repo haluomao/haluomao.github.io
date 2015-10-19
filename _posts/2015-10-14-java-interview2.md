@@ -131,3 +131,15 @@ BigDecimal 由任意精度的整数非标度值 和32 位的整数标度 (scale)
 	   String result = String .format("%.2f");
 	   //%.2f: %. 表示 小数点前任意位数, 2 表示两位小数,格式后的结果为f,表示浮点型
 	}
+##6、Java的输入问题
+输入空行结束输入，这段代码是不行的：
+
+	while(cin.hasNext()){
+		String tmp = cin.nextLine();			
+		if(tmp.equals("")){
+			System.out.println("space");
+			break;
+		}
+	}
+
+将while里面换成true就行了。
