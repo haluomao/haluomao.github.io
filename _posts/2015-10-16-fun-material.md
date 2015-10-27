@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 为什么男人寿命比较短
+title: jokes
 category: Jokes
 comments: false
 ---
-!["为什么男人寿命比较短"](/images/jokePics/1010.jpg "为什么男人寿命比较短")
+!["不准笑"](/images/jokePics/1026.jpg "一律不准笑")
