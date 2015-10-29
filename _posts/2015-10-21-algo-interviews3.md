@@ -71,3 +71,59 @@ x[i]表示从整数1到10^i - 1中包含数字1的个数，例如，x[1]表示�
 
 ###4、非基于比较的排序算法（三种）
 TBC
+
+###5、背包问题的实现！
+TBC
+
+###6、Rotate Array in O(1) space.
+Rotate an array of n elements to the right by k steps.
+
+For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,7,1,2,3,4].
+
+思路：
+
+The basic idea is that, for example, nums = [1,2,3,4,5,6,7] and k = 3, first we reverse [1,2,3,4], it becomes[4,3,2,1]; then we reverse[5,6,7], it becomes[7,6,5], finally we reverse the array as a whole, it becomes[4,3,2,1,7,6,5] ---> [5,6,7,1,2,3,4].
+
+Reverse is done by using two pointers, one point at the head and the other point at the tail, after switch these two, these two pointers move one position towards the middle.
+
+好代码：
+
+	public void rotate(int[] nums, int k) {
+
+	    if(nums == null || nums.length < 2){
+	        return;
+	    }
+	
+	    k = k % nums.length;
+	    reverse(nums, 0, nums.length - k - 1);
+	    reverse(nums, nums.length - k, nums.length - 1);
+	    reverse(nums, 0, nums.length - 1);	
+	}
+	
+	private void reverse(int[] nums, int i, int j){
+	    int tmp = 0;       
+	    while(i < j){
+	        tmp = nums[i];
+	        nums[i] = nums[j];
+	        nums[j] = tmp;
+	        i++;
+	        j--;
+	    }
+	}
+
+###7、Compare Version Numbers
+Here is an example of version numbers ordering:
+
+0.1 < 1.1 < 1.2 < 13.37
+
+7行代码：
+
+ 	public int compareVersion(String version1, String version2) {
+ 		String[]v1=version1.split("\\."),v2=version2.split("\\.");
+        int i;
+        for( i =0;i<v1.length&&i<v2.length;i++)
+        if(Integer.parseInt(v1[i])!=Integer.parseInt(v2[i]))return Integer.parseInt(v1[i])>Integer.parseInt(v2[i])?1:-1;
+        for(;i<v1.length;i++)if(Integer.parseInt(v1[i])!=0)return 1;
+        for(;i<v2.length;i++)if(Integer.parseInt(v2[i])!=0)return -1;
+        return 0;
+	}

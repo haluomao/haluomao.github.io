@@ -205,3 +205,32 @@ clone默认的是浅层拷贝，按位复制对象，也可以实现clone机制�
 
 serialization则是深层拷贝，会复制一张完整的“对象网”，对象会被写入内存之外的存储器中，并在不同的jvm之间传递。
 
+###21、Java创建对象的几种方式（重要）
+(1) 用new语句创建对象，这是最常见的创建对象的方法。  
+
+(2) 运用反射手段,调用java.lang.Class或者java.lang.reflect.Constructor类的newInstance()实例方法。
+
+(3) 调用对象的clone()方法。
+
+(4) 运用反序列化手段，调用java.io.ObjectInputStream对象的 readObject()方法。
+
+(1)和(2)都会明确的显式的调用构造函数 ；(3)是在内存上对已有对象的影印，所以不会调用构造函数 ；(4)是从文件中还原类的对象，也不会调用构造函数。
+
+###22、ArrayList list = new ArrayList(20);中的list扩充几次（）A 0     B 1     C 2      D 3
+
+答案：A解析：这里有点迷惑人，大家都知道默认ArrayList的长度是10个，所以如果你要往list里添加20个元素肯定要扩充一次（扩充为原来的1.5倍），但是这里显示指明了需要多少空间，所以就一次性为你分配这么多空间，也就是不需要扩充了。
+
+###23、下面程序能正常运行吗（）
+	public class NULL {
+	    public static void haha(){
+	        System.out.println("haha");
+	    }
+	    public static void main(String[] args) {
+	        ((NULL)null).haha();
+	    }
+	}
+答案：能正常运行解析：输出为haha。
+
+因为null值可以强制转换为任何java类类型,(String)null也是合法的。
+
+但null强制转换后是无效对象，其返回值还是为null，而static方法的调用是和类名绑定的，不借助对象进行访问所以能正确输出。反过来，没有static修饰就只能用对象进行访问，使用null调用对象肯定会报空指针错了。这里和C++很类似。

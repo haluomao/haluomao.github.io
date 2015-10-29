@@ -181,3 +181,150 @@ BigDecimal 由任意精度的整数非标度值 和32 位的整数标度 (scale)
 `>>=` 右移赋值  
 `>>>=` 右移赋值，左边空出的位以0填充  
 `<<=` 左 移赋值  
+
+###9、Java构造终极题目
+
+请写出输出：
+
+	package ucloud;
+
+	class Base{
+		public int height=getNumber(100);	
+		public static int s_num=getNumber(101);
+		
+		static {
+			System.out.println("father class static");
+		};
+		
+		public static int s_num2=getNumber(102);
+		
+		Base(){
+			System.out.println("\nfather class constructor begin");
+			addOne(height);
+			System.out.println("father class constructor end");		
+		}
+		
+		public static int getNumber(int i){
+			System.out.println("father.getNumber "+i);
+			return i;
+		}
+		
+		public int addOne(int i){
+			System.out.println("father.addOne "+i);
+			return i+1;
+		}
+	}
+	public class ParentSonFinal extends Base{
+	
+		private int radius=getNumber(201);
+		public int height=getNumber(200);
+		
+		public static int s_num=getNumber(202);
+		
+		static{
+			System.out.println("son class static");
+		};
+		
+		public ParentSonFinal(){
+			System.out.println("\nson class constructor begin");
+			addOne(height);
+			addOne(radius);
+			System.out.println("son class constructor end");	
+		}
+		
+		protected void finalize(){
+			System.out.println("son class finalized");
+		};
+		
+		public int addOne(int i){
+			System.out.println("son.addOne "+i);
+			return i+1;
+		}
+		
+		public static void main(String[]args){
+			new ParentSonFinal();
+		}
+	}
+
+输出：
+
+	father.getNumber 101
+	father class static
+	father.getNumber 102
+	father.getNumber 202
+	son class static
+	father.getNumber 100
+	
+	father class constructor begin
+	son.addOne 100
+	father class constructor end
+	father.getNumber 201
+	father.getNumber 200
+	
+	son class constructor begin
+	son.addOne 200
+	son.addOne 201
+	son class constructor end
+
+总结：先执行父类中static代码（按顺序），再执行子类中的static代码，再是父类中的field初始化、构造函数；最后才是子类中field初始化（按顺序）、构造函数。
+
+子类方法如果重写了父类方法，全部用子类的。
+
+###10、再一弹继承考题
+new Child("mike")的输出是什么？
+
+	class People {
+	    String name;
+	    public People() {
+	        System.out.print(1);
+	    }
+	    public People(String name) {
+	        System.out.print(2);
+	        this.name = name;
+	    }
+	}
+	class Child extends People {
+	    People father;
+	    public Child(String name) {
+	        System.out.print(3);
+	        this.name = name;
+	        father = new People(name + ":F");
+	    }
+	    public Child() {
+	        System.out.print(4);
+	    }
+	}
+    
+
+132
+
+但如果父类有多个构造函数时，该如何选择调用呢？  
+
+- 第一个规则：子类的构造过程中，必须调用其父类的构造方法。一个类，如果我们不写构造方法，那么编译器会帮我们加上一个默认的构造方法（就是没有参数的构造方法），但是如果你自己写了构造方法，那么编译器就不会给你添加了，所以有时候当你new一个子类对象的时候，肯定调用了子类的构造方法，但是如果在子类构造方法中我们并没有显示的调用基类的构造方法，如：super();  **这样就会调用父类没有参数的构造方法**。 
+- 第二个规则：如果子类的构造方法中既没有显示的调用基类构造方法，而基类中又没有无参的构造方法，则编译出错，所以，通常我们需要显示的：super(参数列表)，来调用父类有参数的构造函数，此时无参的构造函数就不会被调用。
+- 总之，一句话：子类没有显示调用父类构造函数，不管子类构造函数是否带参数都默认调用父类无参的构造函数，若父类没有则编译出错。
+
+###11、数组与ArrayList之争
+
+开发人员经常会发现很难在数组和ArrayList间做选择。它们二者互有优劣。如何选择应该视情况而定。
+
+- 数组是定长的，而ArrayList是变长的。由于数组长度是固定的，因此在声明数组时就已经分配好内存了。而数组的操作则会更快一些。另一方面，如果我们不知道数据的大小，那么过多的数据便会导致ArrayOutOfBoundException，而少了又会浪费存储空间。
+- ArrayList在增删元素方面要比数组简单。
+- 数组可以是多维的，但ArrayList只能是一维的。
+
+###12、单引号与双引号的区别
+
+	public class Haha {
+	    public static void main(String args[]) {
+	    System.out.print("H" + "a");
+	    System.out.print('H' + 'a');
+	    }
+	}
+看起来这段代码会返回”Haha”,但实际返回的是Ha169。原因就是用了双引号的时候，字符会被当作字符串处理，而如果是单引号的话，字符值会通过一个叫做基础类型拓宽的操作来转换成整型值。然后再将值相加得到169。
+
+###13、操作计时
+在Java中进行操作计时有两个标准的方法：System.currentTimeMillis()和System.nanoTime()。问题就在于，什么情况下该用哪个。从本质上来讲，他们的作用都是一样的，但有以下几点不同：
+
+- System.currentTimeMillis()的精度在千分之一秒到千分之15秒之间（取决于系统）而System.nanoTime()则能到纳秒级。
+- System.currentTimeMillis读操作耗时在数个CPU时钟左右。而System.nanoTime()则需要上百个。
+- System.currentTimeMillis对应的是绝对时间（1970年1 月1日所经历的毫秒数），而System.nanoTime()则不与任何时间点相关。
