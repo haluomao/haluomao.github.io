@@ -1,14 +1,15 @@
 ---
 layout: post
-title: 掌握JSP
+title: Struts
 category: tech
 comments: false
 ---
+Struts是MVC框架的事实标准，已经存在多年了。
 
-forward 和redirect的区别
+#2、 与Spring MVC不同的地方
+- Struts中常用到的类是Action，但其是一个类而不是接口，所以后续所有处理请求的类都要继承Action。（Spring中提供了Controller接口让你实现）
 
-JSP的9种基本内置组件
+- 另一个，是表单的处理上。
+为了处理表单，Struts要求你用ActionForm类来处理输入的参数。你需要创建一个类将表单提交的数据映射到你的领域对象中。Spring允许直接将表单提交的参数绑定到对象中，能简化维护工作。
 
-JSP的6种基本动作，作用分别是
-
-两种跳转方式（include好forward）
+- Struts自身带有声明式表单验证支持，Spring中需要集成额外的验证框架。
