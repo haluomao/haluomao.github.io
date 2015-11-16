@@ -135,6 +135,11 @@ Cookie和Session都为了用来保存状态信息，都是保存客户端状态�
 
 Session可以用Cookie来实现，也可以用URL回写的机制来实现。用Cookie来实现的Session可以认为是对Cookie更高级的应用。
 
+ Cookie的Domain和Path属性标识了这个Cookie是哪一个网站发送给浏览器的；Cookie的Expires属性标识了Cookie的有效时间，当Cookie的有效时间过了之后，这些数据就被自动删除了。  
+ 如 果不设置过期时间，则表示这个Cookie生命周期为浏览器会话期间，只要关闭浏览器窗口，Cookie就消失了。这种生命期为浏览会话期的Cookie 被称为会话Cookie。会话Cookie一般不保存在硬盘上而是保存在内存里。如果设置了过期时间，浏览器就会把Cookie保存到硬盘上，关闭后再次 打开浏览器，这些Cookie依然有效直到超过设定的过期时间。存储在硬盘上的Cookie可以在不同的浏览器进程间共享，比如两个IE窗口。而对于保存 在内存的Cookie，不同的浏览器有不同的处理方式。
+
+Session 是存放在服务器端的类似于HashTable结构（每一种Web开发技术的实现可能不一样，下文直接称之为HashTable）来存放用户数据，当浏览器 第一次发送请求时，服务器自动生成了一个HashTable和一个Session ID用来唯一标识这个HashTable，并将其通过响应发送到浏览器。当浏览器第二次发送请求，会将前一次服务器响应中的Session ID放在请求中一并发送到服务器上，服务器从请求中提取出Session ID，并和保存的所有Session ID进行对比，找到这个用户对应的HashTable。
+
 ####Cookie和Session有以下明显的不同点：
 
 1）Cookie将状态保存在客户端，Session将状态保存在服务器端；
@@ -144,6 +149,37 @@ Session可以用Cookie来实现，也可以用URL回写的机制来实现。用C
 3）Session是针对每一个用户的，变量的值保存在服务器上，用一个sessionID来区分是哪个用户session变量,这个值是通过用户的浏览器在访问的时候返回给服务器，当客户禁用cookie时，这个值也可能设置为由get来返回给服务器；
 
 4）就安全性来说：当你访问一个使用session 的站点，同时在自己机子上建立一个cookie，建议在服务器端的SESSION机制更安全些.因为它不会任意读取客户存储的信息。
+
+#####访问
+
+	//首先说一下Cookie的创建和删除
+	// java
+	Cookie cookie = new Cookie("cookieName",strNum);//创建
+	Cookie[] cookies = request.getCookies();
+	for(int i=0;i<cookies.length;i++){ 
+	  Cookie cookie = new Cookie("bbs_0001",null); 
+	  cookie.setMaxAge(0); 
+	  //cookie.setPath("/");//根据你创建cookie的路径进行填写    
+	  response.addCookie(cookie); 
+	}
+
+####cookie跨域问题
+跨域的业务需求大概是酱紫：用户在a.com进行了登录，希望在b.com也同步进行了登录。如果是同一个主域比较简单，可以通过setcookie中的domain参数进行设定：例如有x.a.com和xx.a.com，可以通过设置domain为a.com，从而a.com的所有二级域名都可以共享这一个cookie。基于安全方面的原因，在a.com下面设置domain为b.com是无效的。
+
+具体思路：在a.com下设置cookie后，嵌入一个iframe框链接b.com的页面，b.com设置好页面cookie后，再嵌入一个a.com的页面，然后通过parent.parent就可以调用最外层的a.com的js方法，从而进行跳转或者一些其它的操作。需要两个iframe，因为如果只用一个iframe的话，即在b.com的synclogin.php内直接调用父窗体的jumpTo方法，在有些浏览器下会提示没有权限的错误。
+
+####session服务器共享
+当用户一会访问是处于正常登录状态，一会访问又没有登录了。这个问题偶尔才会出现。跟踪代码下去才发现session没有取到相应的值，想想也是醉了：原来服务器session没有设置共享，session存在在本地文件目录，当用户访问另外一台服务器的时候自然就取不到session了。
+
+解决方法也不难，通过共享的存储在进行服务器之间的共享。这里使用redis的进行session存储。可以通过php.ini配置文件进行调整，也可以在代码中通过ini_set进行调整
+
+	ini_set("session.save_handler", "redis");
+	ini_set("session.save_path", "tcp://127.0.0.1:6379");
+
+如果需要使用redis进行存储，需要session中的Registered save handlers支持redis。
+
+当这样设置之后，session就会保存在redis中了，不同的集群服务器之间就可以通过该redis服务器进行共享了。
+
 
 ##5、什么是Web缓存？
 
