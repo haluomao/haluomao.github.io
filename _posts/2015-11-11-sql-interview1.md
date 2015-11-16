@@ -40,3 +40,48 @@ comments: false
 	FROM msgrecord 
 	WHERE CAST(stime AS TIME) BETWEEN '08:00:00' AND '20:00:00'
 	GROUP BY region;
+
+##3、选出上个月上海地区买帽子的前10个人名字
+数据表和数据：
+
+User:
+
+	uid uname
+	1	ban
+	2	ban2
+	3	ban
+	
+orderT:
+
+	oid uid otime city
+	1	1	2015-10-11 00:00:00	sh
+	2	1	2015-11-15 10:47:02	hz
+	3	3	2015-10-15 01:23:20	sh
+	4	2	2015-11-15 01:23:20	sh
+			
+orderItem:
+
+	iid	oid iname	amount
+	1	1	hat		3
+	2	1	shoe	1
+	3	2	hat		3
+	4	3	hat		4
+	
+结果：
+
+	name sum
+	ban	4
+	ban	3
+
+答案：		
+
+	select user.name, sum(amount) SUM
+	from user, orderT, orderItem
+	where user.uid=ordert.uid and
+	ordert.oid=orderItem.oid and
+	orderItem.iname='hat' and
+	ordert.city='sh' and
+	PERIOD_DIFF( date_format(now(), '%Y%m') , date_format( ordert.otime, '%Y%m' ) ) =1
+	group by user.uid
+	order by user.uid desc
+	limit 10;
