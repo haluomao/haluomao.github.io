@@ -41,8 +41,8 @@ comments: false
 虚引用与软引用和弱引用的一个区别在于：虚引用必须和引用队列(ReferenceQueue)联合使用。当垃 圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之关联的引用队列中。程序可以通过判断引用队列中是 否已经加入了虚引用，来了解被引用的对象是否将要被垃圾回收。程序如果发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前采取必要的行动。
 
 14. JVM内存分区，每个区的作用是什么?  
-![1](\images\201511\sdkmem.PNG "sdk内存区")
-![2](\images\201511\jvm.png "jvm内存区")
+![1](/images/201511/sdkmem.PNG "sdk内存区")
+![2](/images/201511/jvm.png "jvm内存区")
 	- 程序计数器:当前线程所执行字节码的行号指示器，所以它是私有的.
 	- Java栈（Java虚拟机栈）:Java栈与线程的生命周期相同，java栈中存放的是一个个栈帧。栈帧中存放的是局部变量表、操作数栈、指向运行时常量池的引用、方法返回值地址和附加信息。当jvm创建一个线程时，Java栈也随之创建（因此它也是线程私有），线程执行一个方法时就会创建一个栈与之对应的帧并压入栈中，方法执行结束，栈帧出栈。
 	- 本地方法栈:为Native方法服务。
@@ -86,7 +86,10 @@ comments: false
 
 	原子操作就是不能被线程调度机制中断的操作
 23. ThrealLocal是什么，原理
-24. Thread 类中的 start () 和 run () 方法有什么区别？
+24. sleep() 和 wait () 方法有什么区别？  
+wait后进入等待锁定池，使用此对象发出的notify 或 notifyAll 方法获得对象锁进行就绪状态（非运行状态）。
+
+	sleep和wait的主要区别是是否释放锁、监视对象，sleep调用时会继续保持（其它线程阻塞等待）；wait调用时会释放（另一个线程可获得锁继续执行）。此外，wait用于多线程间通信，sleep 用于暂停特定时间执行。
 25. java JNI相关
 26. 线程同步的方法有哪些
 27. java socket编程
@@ -125,6 +128,16 @@ comments: false
 
 39. Thread 类中的 start() 和 run() 方法有什么区别？  
 	start() 方法被用来启动新创建的线程，而且 start() 内部调用了 run() 方法，这和直接调用 run() 方法的效果不一样。当你调用 run() 方法的时候，只会是在原来的线程中调用，没有新的线程启动， start() 方法才会启动新线程。
+40. String的intern()函数  
+	`public native String intern();`  
+	Returns a canonical(规范的) representation for the string object. 
+
+	A pool of strings, initially empty, is maintained privately by the class String. 
+
+	When the intern method is invoked, if the pool already contains a string equal to this String object as determined by the equals(Object) method(判断调用者是否在pool中已存在）, then the string from the pool is returned（存在就返回pool中的the string）. Otherwise, this String object is added to the pool and a reference to this String object is returned(否则就将对象添加到pool并返回引用）. 
+
+    It follows that for any two strings s and t, s.intern() == t.intern() is true if and only if s.equals(t) is true. 
+
 ###数据结构与算法
 1. 九个排序算法，时间复杂度，什么情况下用哪种排序。
 2. 链表
