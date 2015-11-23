@@ -309,15 +309,156 @@ Asynchronous JavaScript And XML（异步 JavaScript 及 XML）
 	}
 	?>
 
+##4、PHP基础
+###4.1 程序的运行结果
+
+	<?php
+	$strA=null;
+	$strB=false;
+	echo $strA==$strB ? '相等':'不相等';
+
+	$strC='';
+	$strD=0;
+	echo $strC==$strD ? '相等':'不相等';
+	?>
+
+结果都是“相等”，null和false都属于空值，''和0依然是空。
+
+###4.2 大小写
+PHP在定义变量的时候、获取变量的时候是不分大小写的，获取form表单中的值时是区分大小写的。
+
+###4.3 单双引号
+都是定义字符串的方式。
+
+单引号包含的变量按普通字符串输出；
+
+双引号所包含的变量会自动被替换成实际数值。
+###4.4 操作符优先级
+'.'优先级高于'+',如下面的程序
+
+	<?php echo 'Test'.1+2.'45';?>
+
+输出是'245',('Test'.1)+(2.'45')，由于前面不是数字，运算结果就是0，后面是245
+
+###4.5 include和require
+还有include_once和require_once函数，用来在当前代码中添加库代码。
+
+两者的区别：include执行到该语句的时候再包含，如果出现错误，只会给出警告；后者出现错误的时候抛出致命错误，并终止程序执行。
+
+`include 'a.php';`
+
+当同一页面包含两个相同的自定义函数时，会导致运行出错。
+
+###4.6 PHP的弱类型特点
+	<?php
+	$a="hello";
+	if($a==0){
+		echo "hello";
+	}else{
+	}
+	?>
+
+会输出hello！$a在比较时隐性地转换成了数字型变量0.
+
+php不会严格检验传入的变量类型，也可以将变量自由的转换类型。
+
+###4.7 PHP 重定向
+是header函数，不是redirect()!!
+
+重定向方法总结：  
+方法一：`<?php header("Location: viewNote.php"); ?> `  
+方法二：`echo "<scrīpt>window.location ="$PHP_SELF";</script>";`       
+方法三：`echo "<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">";`
+
+header()函数必须放在php程序的开头部分，而且之前不能有另外的 header() 函数或者 setcookie() 被调用，如果是带有网页输出，本语句必须放在 <HEAD></HEAD>标记之前。
+
+###4.8 `mysql_fetch_row()`和`mysql_fetch_array()`
+前者返回的是数字索引数组，只能通过数字索引获取元素值；
+
+后者返回关联数组，既能通过数字，又能通过字符串索引来获取元素值。
+
+
+###4.9 php中的静态变量和全局变量
+全局变量：定义在所有函数以外的变量，函数内部通过两种方式访问全局变量：
+
+	global $gvar;
+	globals['gvar'];
+
+静态变量：能够在函数调用之后仍保留变量值，当再次回到其作用域时，又可以继续使用原来的值。
+
+###4.10 echo(),print()和print_r()区别
+print：只能打印简单类型变量值
+
+print_r:打印复杂类型变量的值（如数组、对象）
+
+echo：输出一个或多个字符串
+
+###4.11 中文字符串截取(mb_substr)
+`mb_substr( $str, $start, $length, $encoding ) `
+
+	<?php 
+	$str='脚本之家：http://www.jb51.net'; 
+	echo mb_substr($str,0,4,'utf-8');//截取头5个字，假定此代码所在php文件的编码为utf-8 
+	?> 
+结果显示：脚本之家 
+
+获取中文长度:mb_strlen() :
+
+`mb_strlen( $str, $encoding ) `
+
+###4.12 其他字符串操作
+- explode()	把字符串打散为数组。
+- implode()	返回由数组元素组合成的字符串。别名：join()
+- htmlspecialchars_decode()	把一些预定义的 HTML 实体转换为字符。
+- htmlspecialchars()	把一些预定义的字符转换为 HTML 实体
+- sprintf()	把格式化的字符串写入变量中。
+- printf()	输出格式化的字符串。
+- trim()	移除字符串两侧的空白字符和其他字符。
+ 
+###4.13 php 5的构造函数和析构函数
+__construct & __destruct
+
+`parent::`调用父类的方法，如`parent::__construct()`
+
+`self`——用于在类内引用静态的成员属性和方法。
+
+###4.14 错误与异常
+`error_reporting(2047);`//输出所有错误和警告，2047即E_ALL  
+`display_errors` 默认是NO，控制脚本执行期间出现的错误信息是否显示给用户。
+
+###4.15 fopen()和@fopen()的区别
+@用于屏蔽程序中可能或存在的一些错误信息，可以防止用户看到错误报告的具体内容而产生恶意想法。
+
 ##5、PHP高级
-##5.1 什么是 PHP 过滤器？
+###5.1 什么是 PHP 过滤器？
 PHP 过滤器用于验证和过滤来自非安全来源的数据。  
 验证和过滤用户输入或自定义数据是任何 Web 应用程序的重要组成部分。
 设计 PHP 的过滤器扩展的目的是使数据过滤更轻松快捷。
 
 什么是外部数据？1.来自表单的输入数据,2.Cookies,3.服务器变量,4.数据库查询结果.
 
-##5.2 Mysql操作
+**函数和过滤器**  
+如需过滤变量，请使用下面的过滤器函数之一：
+
+- `filter_var()` - 通过一个指定的过滤器来过滤单一的变量
+- `filter_var_array()` - 通过相同的或不同的过滤器来过滤多个变量
+- `filter_input` - 获取一个输入变量，并对它进行过滤
+- `filter_input_array` - 获取多个输入变量，并通过相同的或不同的过滤器对它们进行过滤
+在下面的例子中，我们用 `filter_var()` 函数验证了一个整数：
+
+		<?php
+		$int = 123;
+		
+		if(!filter_var($int, FILTER_VALIDATE_INT))
+		 {
+		 echo("Integer is not valid");
+		 }
+		else
+		 {
+		 echo("Integer is valid");
+		 }
+
+###5.2 Mysql操作
 
 	$con = mysql_connect("localhost","peter","abc123") or die('Could not connect: ' . mysql_error());
 	
@@ -354,4 +495,156 @@ PHP 过滤器用于验证和过滤来自非安全来源的数据。
 
 	mysql_close($con);
 
-##4、 Zend
+###5.3 二进制安全
+二进制安全功能（binary-safe function）是指在一个二进制文件上所执行的不更改文件内容的功能或者操作。这能够保证文件不会因为某些操作而遭到损坏。
+
+（就是指函数的参数包括二进制数据的时候，函数依然能正常操作。）
+
+
+
+**只关心二进制化的字符串,不关心具体格式.**只会严格的按照二进制的数据存取.不会妄图已某种格式解析数据.
+有时候以错误的格式打开一个文件,会导致文件发生不可逆的损坏.而二进制安全就是说会避免这种损坏.
+
+
+例如strlen，在输入数据里有\0的时候，并不会在此停止。所以可以说是二进制安全的。  
+PHP的strlen是怎么都不会停的，直接返回这个字符串内部数据结构的length值。strlen( "te\0st\0test" ) = 10
+
+再比如函数strcoll，它是非二进制安全。而strcmp则是二进制安全的。
+
+它们的区别是：
+
+	$string1 = "Hello";
+	$string2 = "Hello\x00Hello";
+	echo strcoll($string1, $string2); // 返回0, 由于是非二进制安全，误判为相等
+	echo strcmp($string1, $string2); // 返回负数
+
+###5.4 闭包
+例子：
+闭包的语法很简单，需要注意的关键字就只有use，use意思是**连接闭包和外界变量**。
+
+	$a = function() use($b) {
+	 
+	}
+What：
+作用：
+>[PHP的闭包](http://www.cnblogs.com/yjf512/archive/2012/10/29/2744702.html)
+	
+	- 减少foreach的循环的代码
+	- 减少函数的参数
+	- 解除递归函数
+	- 关于延迟绑定
+
+###5.5 PHP调试方法
+- 增加中间变量或跟踪变量：例如输出
+- 用注释语句排除法进行调试：注释掉代码，错误没有了，那么大致可以定位错误的位置
+- 通过调试器：设置断点
+- 分段对程序做流程图解析。
+
+
+##6、php.ini
+###6.1 safe_mode选项
+开启该选项，PHP将检查当前脚本的拥有者是否和被操作文件的拥有者相同，将影响文件操作类函数和程序执行类函数，如：pathinfo/basename/fopen/exec等。
+
+###6.2 上传文件
+`file_uploads` 设置为NO  
+`upload_tmp_dir` 默认是系统默认tmp目录  
+`upload_max_filesize` 上传文件的最大值  
+`max_execution_time` 一个指令所能执行的最大时间  
+`memory_limit` 一个指令分配的内存空间 单位是M
+
+##8、php框架
+- Zend：Web2.0风格，功能强大，松耦合
+- ThinkPHP
+国内开发、原名FCS，开源
+- Seagull 简单易用，适合web、命令行和GUI应用的PHP框架
+- CodeIgniter 是一个简单快速的PHP MVC框架。EllisLab 的工作人员发布了 CodeIgniter。许多企业尝试体验过所有 PHP MVC 框架之后，CodeIgniter 都成为赢家，主要是由于它为组织提供了足够的自由支持，允许开发人员更迅速地工作。
+
+###8.1 Zend Framework
+常用组件：
+
+- `Zend_Controller`
+此模块为应用程序提供全面的控制。它将请求转化为特定的行为并确保其执行。
+- `Zend_Db`
+此模块基于 PHP 数据对象 (PDO) 并提供一种通用方式来访问数据库。
+- `Zend_Feed`
+此模块使使用 RSS 和 Atom 提要变得简单。
+- `Zend_Filter`
+此模块提供字符串过滤函数，如 isEmail() 和 getAlpha()。
+- `Zend_InputFilter`
+对于 Zend_Filter，此模块是用来操作数组的，如表单输入。
+- `Zend_HttpClient`
+此模块使您能轻易地执行 HTTP 请求。
+- `Zend_Json`
+此模块使您能够轻易地将 PHP 对象转换成 JavaScript 对象符号，反之亦然。
+- `Zend_Log`
+此模块提供通用日志功能。
+##7、php垃圾处理机制
+###7.1引用计数基本知识  
+>http://php.net/manual/zh/features.gc.refcounting-basics.php
+
+每个php变量存在一个叫"**zval**"的变量容器中。一个zval变量容器，除了包含**变量的类型和值，还包括两个字节的额外信息**。
+
+- 第一个是"is_ref"，是个bool值，用来标识这个变量是否是属于引用集合(reference set)。通过这个字节，php引擎才能把普通变量和引用变量区分开来，由于php允许用户通过使用&来使用自定义引用，zval变量容器中还有一个内部引用计数机制，来优化内存使用。
+- 第二个额外字节是"refcount"，用以表示指向这个zval变量容器的变量(也称符号即symbol)个数。所有的符号存在一个符号表中，其中每个符号都有作用域(scope)，那些主脚本(比如：通过浏览器请求的的脚本)和每个函数或者方法也都有作用域。
+
+当一个变量被赋常量值时，就会生成一个zval变量容器，如下例这样：
+
+Example #1 生成一个新的zval容器
+
+	<?php
+	$a = "new string";
+	?>
+在上例中，新的变量a，是在当前作用域中生成的。并且生成了类型为 string 和值为new string的变量容器。在额外的两个字节信息中，`is_ref`被默认设置为 FALSE，因为没有任何自定义的引用生成。"refcount" 被设定为 1，因为这里只有一个变量使用这个变量容器. 注意到当"refcount"的值是1时，`is_ref`的值总是FALSE. 如果你已经安装了» Xdebug，你能通过调用函数 `xdebug_debug_zval()`显示"refcount"和`"is_ref"`的值。
+
+Example #4 减少引用计数
+
+	<?php
+	$a = "new string";
+	$c = $b = $a;
+	xdebug_debug_zval( 'a' );
+	unset( $b, $c );
+	xdebug_debug_zval( 'a' );
+	?>
+以上例程会输出：
+
+	a: (refcount=3, is_ref=0)='new string'
+	a: (refcount=1, is_ref=0)='new string'
+如果我们现在执行 unset($a);，包含类型和值的这个变量容器就会从内存中删除。
+
+变量容器在”refcount“变成0时就被销毁. 当任何关联到某个变量容器的变量离开它的作用域(比如：函数执行结束)，或者对变量调用了函数 unset()时，”refcount“就会减1.
+
+**复合类型**  
+当考虑像 array和object这样的复合类型时，事情就稍微有点复杂. 与 标量(scalar)类型的值不同，array和 object类型的变量把它们的成员或属性存在自己的**符号表**中。这意味着下面的例子将生成三个zval变量容器。
+
+Example #5 Creating a array zval
+
+	<?php
+	$a = array( 'meaning' => 'life', 'number' => 42 );
+	xdebug_debug_zval( 'a' );
+	?>
+以上例程的输出类似于：
+
+	a: (refcount=1, is_ref=0)=array (
+	   'meaning' => (refcount=1, is_ref=0)='life',
+	   'number' => (refcount=1, is_ref=0)=42
+	)
+###7.2 回收周期
+>http://php.net/manual/zh/features.gc.collecting-cycles.php
+
+首先，我们先要建立一些基本规则，如果一个引用计数增加，它将继续被使用，当然就不再在垃圾中。如果引用计数减少到零，所在变量容器将被清除(free)。就是说，仅仅在引用计数减少到非零值时，才会产生垃圾周期(garbage cycle)。
+
+其次，在一个垃圾周期中，通过检查引用计数是否减1，并且检查哪些变量容器的引用次数是零，来发现哪部分是垃圾。
+
+算法中都是模拟删除、模拟恢复、真的删除，都使用简单的遍历即可（最典型的深搜遍历）。复杂度为执行模拟操作的节点数正相关。
+
+当垃圾回收机制打开时，每当根缓存区存满时，就会执行上面描述的循环查找算法。根缓存区有固定的大小，可存10,000个可能根。 
+
+##8. PHP内核探索
+###8.1 变量的创建
+
+PHP总共有三个模块：内核、Zend引擎、以及扩展层。
+
+PHP内核用来处理请求、文件流、错误处理等相关操作；
+Zend引擎（ZE）用以将源文件转换成机器语言，然后在虚拟机上运行它；
+扩展层是一组函数、类库和流，PHP使用它们来执行一些特定的操作。
+比如，我们需要mysql扩展来连接MySQL数据库； 当ZE执行程序时可能会需要连接若干扩展，这时ZE将控制权交给扩展，等处理完特定任务后再返还；最后，ZE将程序运行结果返回给PHP内核，它再将结果传送给SAPI层，最终输出到浏览器上。
