@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 十诫
-category: Life
+category: life
 comments: false
 ---
 1. 玩物会丧志
@@ -14,5 +14,3 @@ comments: false
 8. 不要轻易尝试放纵的滋味，理智地生活
 9. 做力所能及的事，勿好高骛远，勿眼高手低
 10. 不叫一日闲过
- 
-

@@ -5,8 +5,8 @@
 # Where things are
 source:       .
 destination:  ./_site
-plugins:      ./_plugins
-layouts:      ./_layouts
+plugins_dir:      ./_plugins
+layouts_dir:      ./_layouts
 paginate:     10
 
 # Handling Reading
@@ -25,8 +25,8 @@ future:       true
 unpublished:  false
 
 # Conversion
-markdown:     kramdown
-highlighter:  pygments
+#markdown:     kramdown
+#highlighter:  pygments
 lsi:          false
 excerpt_separator: "\n\n"
 
@@ -46,7 +46,7 @@ timezone:      null
 title: Mao's Blog
 description: Just another Jekyll theme design and code by zhanxin.info.
 keywords: Mao's Blog
-url: 
+url:
 feed: /atom.xml
 favicon: https://avatars0.githubusercontent.com/u/1695304?v=3&s=460
 
@@ -54,7 +54,7 @@ favicon: https://avatars0.githubusercontent.com/u/1695304?v=3&s=460
 nav:
   - text: Home
     url: index.html
-  - text: Categories 
+  - text: Categories
     url: navigations/categories.html
   - text: Archives
     url: navigations/archives.html
@@ -114,10 +114,10 @@ disqus:
 
 
 #################################### global configure #######################################
-   
+
 username: haluomao
-baseurl: 
-markdown: redcarpet
+baseurl:
+#markdown: kramdown #redcarpet
 safe: false
 highlighter: pygments
 title: MFG's Blog
@@ -125,5 +125,6 @@ description: Good Good Coding, Day Day Up!
 theme: kunka
 disqusname: Blogs
 
+gems: [jekyll-paginate]
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
 # those themes are all come from GitHub Pages Themes

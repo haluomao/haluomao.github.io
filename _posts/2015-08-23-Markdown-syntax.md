@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Markdown Syntax
-category: Tech
+category: tech
 comments: false
 ---
 ##1. [Markdown: Basics （快速入门）](http://www.appinn.com/markdown/basic.html)

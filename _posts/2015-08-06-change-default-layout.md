@@ -2,7 +2,7 @@
 layout: post
 title:  "Changes to Default Layouts!"
 date:   2015-08-06 16:09:37
-category: Tech
+category: tech
 comments: true
 ---
 I will try to add changes to default layouts which provided by Jekyll.

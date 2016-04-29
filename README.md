@@ -4,7 +4,7 @@ MFG's Blog
 基于 [StrayBirds](http://minixalpha.github.io/StrayBirds/)  搭建的极简博客，所有操作都可以直接通过浏览器完成。
 
 本博客模板仅包含一个皮肤：
-   
+
 [kunka](https://github.com/pizn/kunka), Licence: MIT, author: [zhanxin.info](http://www.zhanxin.info/)
 
 ## 教程
@@ -55,3 +55,17 @@ category: 技术
 ```
 
 其中 `layout` 表示布局，不用改变，`title` 表示文章题目，`comments` 表示是否要开户评论。
+
+## 其他
+
+如果想本地调试生成的网页，可以搭建jekyll运行环境. 参考：
+[http://www.2cto.com/os/201411/351818.html](http://www.2cto.com/os/201411/351818.html)
+
+如果遇到错误，可以参考：
+[https://ruby-china.org/topics/29323](https://ruby-china.org/topics/29323)
+[http://zyzhang.github.io/blog/2012/08/31/highlight-with-Jekyll-and-Pygments/](http://zyzhang.github.io/blog/2012/08/31/highlight-with-Jekyll-and-Pygments/)
+[https://gems.ruby-china.org/](https://gems.ruby-china.org/)
+
+其他插件：
+gem install redcarpet jekyll-paginate
+(貌似redcarpet在github的页面不再受到支持，考虑用替代品：kramdown)
