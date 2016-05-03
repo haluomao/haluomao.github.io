@@ -5,8 +5,8 @@
 # Where things are
 source:       .
 destination:  ./_site
-plugins_dir:      ./_plugins
-layouts_dir:      ./_layouts
+plugins_dir:  ./_plugins
+layouts_dir:  ./_layouts
 paginate:     10
 
 # Handling Reading
@@ -112,14 +112,13 @@ disqus:
   config: true
   id: haluomao
 
-
 #################################### global configure #######################################
 
 username: haluomao
 baseurl:
 #markdown: kramdown #redcarpet
 safe: false
-highlighter: pygments
+highlighter: rouge #pygments
 title: MFG's Blog
 description: Good Good Coding, Day Day Up!
 theme: kunka
