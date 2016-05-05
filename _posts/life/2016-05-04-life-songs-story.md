@@ -4,8 +4,9 @@ title: 歌曲背后的故事
 category: life
 comments: false
 ---
-##《修炼爱情》
->[修炼爱情_百度百科] (http://baike.baidu.com/link?url=LKHAavuFg-QOCr1Uyk9O4EnbMXG4VmbmUs_CRpp8HjFbcdAQovIzIjQZ826BoBX_VtbCQ1997ae130VIQdZFXq#reference-[2]-10141882-wrap)
+## 《修炼爱情》
+
+>[修炼爱情_百度百科](http://baike.baidu.com/link?url=LKHAavuFg-QOCr1Uyk9O4EnbMXG4VmbmUs_CRpp8HjFbcdAQovIzIjQZ826BoBX_VtbCQ1997ae130VIQdZFXq#reference)
 
 第21届金曲奖林俊杰以翻唱形式公布最佳女歌手，其中演唱了徐佳莹的《失落沙洲》，而徐佳莹在我是歌手演唱了林俊杰的《修炼爱情》。
 
