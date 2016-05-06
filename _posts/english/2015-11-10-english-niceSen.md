@@ -5,4 +5,4 @@ category: english
 comments: false
 ---
 1. deteriorate search precision 减低搜索精度
-2.
+2. the constant is irrelevant 常数部分是可忽略的
