@@ -69,7 +69,6 @@ comments: false
        *
        * Pointer k is the first index of ?-part.
        */
-
 4、算法不断将第四部分的数据往其他部分放，L、K和G也往相对应的方向增长；  
 5、重复4直到K<=G;  
 6、P1放在L的位置，P2放在G（或K）的位置；  
