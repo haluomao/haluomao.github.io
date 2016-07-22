@@ -134,6 +134,82 @@ mongodb采用B树的结构来存放索引,使用索引后性能会提升很多�
 删除索引:dropIndexes。
 	db.person.dropIndexes("name_1")
 
+# 使用
+
+## 组件集合
+
+| Component Set        | Binaries           |
+| ------------- |:-------------:|
+|Server	| mongod.exe|
+|Router	|mongos.exe|
+|Client	|mongo.exe|
+|MonitoringTools|	mongostat.exe, mongotop.exe|
+|ImportExportTools	|mongodump.exe, mongorestore.exe, mongoexport.exe, mongoimport.exe|
+|MiscellaneousTools	|bsondump.exe, mongofiles.exe, mongooplog.exe, mongoperf.exe|
+
+## 服务安装
+如果路径里面包含空格，就用双引号括住整个路径
+
+	mongod.exe --dbpath "D:\MongoDB\data\db" --logpath "D:\Program Files\MongoDB\Server\3.2\logs\MongoDb.log"
+
+- --dbpath: db存储路径
+- --logpath: 日志存储路径，要精确到文件
+
+为了避免重复启动，将其安装成服务：
+
+	mongod.exe --dbpath "D:\MongoDB\data\db" --logpath "D:\Program Files\MongoDB\Server\3.2\logs\MongoDb.log" --install --service
+
+运行所有的命令都应该在管理员命令行窗口内。
+
+如果设置了权限，需要删除原来的服务：
+	
+	开始->services.msc, 找到service, 记录下名称； 之后以admin身份进入cmd，"sc delete SERVICE_NAME"命令进行删除。
+
+重新运行命令：
+
+	mongod.exe --dbpath "D:\Program Files\MongoDB\Server\3.2\data\db" --logpath
+	 "D:\Program Files\MongoDB\Server\3.2\logs\MongoDb.log" --install --service --auth
+
+## 授权登录
+1. 使用"mongo" 直接进入后，运行```db.auth('admin','admin'); ```进行认证。
+2. 命令：``` mongo -u admin -p admin -authenticationDatabase admin```.
+
+## 创建cfg配置文件
+
+创建一个配置文件，文件内必须设置MongoDB日志路径 systemLog.path。包扩一些其他的附加配置选项。 
+例如，在在D:\MongoDB\ 下创建mongod.cfg，并在文件内指定systemlog.path和storage.dbpath：
+
+	systemLog:
+	    destination: file
+	    path: D:\MongoDB\data\log\mongod.log
+	storage:
+	    dbPath: D:\MongoDB\data\db
+
+通过运行mongod.exe的–install安装选项和–config和配置选项，指定先前创建的配置文件安装MongoDB服务。
+
+	mongod.exe --config "D:\MongoDB\mongod.cfg" --install
+
+## 创建用户
+
+	use admin
+	db.createUser(
+	  {
+	    user:"root",
+	    pwd:"root",
+	    roles:["root"]
+	  }
+	)
+
+	use db1
+	db.createUser(
+	  {
+	    user:"db1",
+	    pwd:"db1",
+	    roles:["readWrite"]
+	  }
+	)
 
 ## 参考
 > [8天学通MongoDB](http://www.cnblogs.com/huangxincheng/archive/2012/02/18/2356595.html)
+> [浅析MongoDB用户管理](http://www.jb51.net/article/53830.htm)
+> [MongoDB常用操作命令大全](http://www.jb51.net/article/48217.htm)

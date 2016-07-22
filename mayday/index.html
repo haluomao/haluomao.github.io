@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jquery写的html5音乐播放器_前端开发-武方博</title>
+<style type="text/css"> 
+*{ margin:0; padding:0;}
+body { font:12px/1.8 Arial; color:#666;}
+ul,li{ list-style:none;}
+h1.tit-h1 { font-size:38px; text-align:center; margin:30px 0 15px; color:#f60;}
+.go-back{ text-align:center; border-top:1px dashed #ccc; padding:10px; margin-top:20px; font-size:40px;}
+.wrap{border:1px dashed #ccc; background:#f8f8f8; padding:20px;}
+
+#message{position: absolute;z-index:9999;width:372px;height:63px;text-align:center;color: #fff;font-size:20px;line-height:63px; background:url(message_bg.png) 0 0 no-repeat;}
+</style> 
+<link rel="stylesheet" href="reset.css" />
+<link rel="stylesheet" href="player.css" />
+<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="jquery-ui-1.7.3.custom.min.js"></script>
+<script type="text/javascript" src="player.js"></script>
+</head>
+<body>
+<script type="text/javascript">/*右下角弹窗*/ var cpro_id = 'u678925';</script><script src="http://cpro.baidu.com/cpro/ui/f.js" type="text/javascript"></script>
+
+<h1 class="tit-h1">jquery写的html5音乐播放器_前端开发-武方博</h1> 
+
+<div style="width:960px; margin:0 auto;"><script type="text/javascript">/*960*60，创建于2011-6-30*/ var cpro_id = 'u524659';</script><script src="http://cpro.baidu.com/cpro/ui/c.js" type="text/javascript"></script></div> 
+
+<div class="wrap" style="height:800px;">
+
+
+<div id="all">
+		<div id="main">
+			<div id="loading"><span class="loadico"></span><p>正在努力的加载ing...<br/>最佳支持浏览器：chrome 19+</p></div>
+			<div id="playMain">
+				<div class="playerContainer" id="playerContainer">
+	                <audio id="player" preload="preload">
+	                </audio>
+	            </div>
+				<header class="controls clearfix">
+                    <ul class="control">
+                    	<li id="playBtn"><a href="#" onclick="return false;" class="icon icoplay" title="播放/暂停"></a></li>
+					   <li id="nextBtn"><a href="#" onclick="return false;" class="icon iconext" title="下一首"></a></li>
+					</ul>
+					<section class="progress">
+						<section id="progressContent" title="亲,拖动改变播放进度哦">
+							<p id="progress"></p>
+                            <p id="timer"></p>
+						</section>
+					</section>
+					<section class="vol">
+					   <a href="###" onclick="return false;" id="volicon" class="icon icovol fl"></a>
+					   <section id="vol" class="fl" title="亲,拖动改变音量哦">
+					   	<span id="volProgress"></span>
+						<a href="##" onclick="return false;" id="volCtrl"></a>
+					   </section>
+					</section>
+                </header>
+				
+				<section class="lrc clearfix">
+					<div id="lists" class="clearfix">
+						<dl id="musics" class="fl">
+							<dt class="title">
+								<a href="#" onclick="return false;" id="resetListBtn" class="btn" title="显示歌词">显示歌词</a>
+								<a href="#" onclick="return false;" id="randomBtn" class="btn" title="随机打散">随机打乱</a>
+								<a href="#" onclick="return false;" id="repeatBtn" class="icon repeat" title="循环方式"></a>
+							</dt>
+							<dd>
+								<ul id="musicList">
+		                        </ul>
+							</dd>
+						</dl>
+						<dl id="lrcs" class="fl">
+							<dt class="title"><p id="title"></p><!--<a href="#" onclick="return false;" id="backMusic" class="btn" title="返回列表">返回</a>--></dt>
+							<dd id='lrcContent'>
+								
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<footer class="footer clearfix">
+					<span class="fl tips">最佳浏览器: chrome 19+ | 作者: <a href="//weibo.com/sanshuiqing" target="_blank">@三水清</a></span>
+					<a id="toggleListBtn" href="#" onclick="return false;" title="列表/歌词切换" class="icon icomusic toggleList"></a>
+				</footer>
+			</div>
+		</div>
+	</div>
+	<div class="bubtips clearfix" id="listTips">
+        <div class="tipsContent">
+         这里切换歌词和列表哦~
+        </div>
+		<a href="javascript:;" class="close" id="close"></a>
+		<div class="tips_arrow"><em>◆</em><span>◆</span></div>
+    </div>
+
+
+</div>
+
+
+
+<div class="go-back"><a href="http://www.wufangbo.com/jquery-examples-list">返回jQuery实例列表</a></div>
+
+
+<script type="text/javascript">
+  
+</script>
+
+</body> 
+</html>
