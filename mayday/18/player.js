@@ -1,13 +1,32 @@
 /**
  * @author theowang
- * used by mfg
  * 界面仿得亦歌
+ * 音乐都是我自己用goldwave转的ogg格式
+ * 因为sae文件限制，所以没多传音乐
+ * 一天完成的，肯定很多问题，要抱着包容的态度哦~
+ * 我的新浪微博 @三水清 weibo.com/sanshuiqing
+ * 我的博客：js8.in
  */
 var playList = [
 {
-	title:'任意门',
-	lrc:'lrc/rym.lrc',
-	src:'music/renyimen.mp3'
+	title:'17岁 - 刘德华',
+	lrc:'17.lrc',
+	src:'17.ogg'
+},
+{
+	title:'断桥残雪（许嵩）',
+	lrc:'dqcx.lrc',
+	src:'dqcx.ogg'
+},
+{
+	title:'套马杆 - 草原风 - 乌兰图雅',
+    lrc:'tmg.lrc',
+    src:'tmg.ogg'
+},
+{
+	title:'最炫民族风 - 凤凰传奇',
+    lrc:'zxmzf.lrc',
+    src:'zxmzf.ogg'
 },
 ];
 !function(){
@@ -211,6 +230,7 @@ var playList = [
 		var nAudio = $('<audio id="player" preload="preload"/>').html(html).appendTo($('#playerContainer').empty());
 		bindAudioEvent(nAudio);
 		$audio = nAudio[0];
+		
 		//不知道这里是否需要添加~~~~~~~~~~~~~~~~~
 //		if($audio.readyState===2){
 //			if($('#playBtn > a').hasClass('icopause')){
@@ -240,13 +260,13 @@ var playList = [
 			
         }).bind('ended', ended);
 	}
-	//init
+	//inti
 	function init(){
 		initList();
-		localStorage = localStorage.lrcList || {};  
+		//localStorage = localStorage.lrcList || {};  
 		loadMusic(playList[0]);
 		var volume = localStorage.volume || 0.5;
-		setVolume(volume, true);
+		setVolume(volume);
 		play(0);
 		
 	}
@@ -342,7 +362,7 @@ var playList = [
     }
 	//设置音量
 	function setVolume(value,save) {
-        //$audio.volume = value;
+        $audio.volume = value;
 		!save && (localStorage.volume = value);
         $volProgress.css('width', value * 100 + '%');
         $volCtrl.css('left', value * 100 + '%');
